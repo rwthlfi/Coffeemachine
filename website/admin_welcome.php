@@ -6,7 +6,6 @@ $balance = $_SESSION['balance'];
 $userID = $_SESSION['ID'];
 
 
-
 $sqlFetchUsers = "SELECT * From user";
 $resultFetchUsers = mysqli_query($conn, $sqlFetchUsers);
 $sqlFetchProducts = "SELECT * From product";
@@ -21,7 +20,7 @@ while ($row = mysqli_fetch_assoc($resultFetchUsers)) {
     $userList .= '<button onclick="window.location.href = \'edit_user.php?name=' . $currentUserName . '\'">Edit</button>';
     $userList .= '<button onclick="deleteUser(\'' . $currentUserName . '\')">Delete</button>';
     $userList .= '<button onclick="window.location.href = \'charge_user.php?name=' . $currentUserName . '\'">Charge</button>';
-    $userList .= '<button onclick="window.location.href = \'reset_password.php?name=' . $currentUserName . '-id=' . $currentUserID . '\'">Reset Password</button>';
+    $userList .= '<button onclick="window.location.href = \'reset_password.php?name=' . $currentUserName . '&id=' . $currentUserID . '\'">Reset Password</button>';
     $userList .= '</li>';
 }
 $productList = '';
