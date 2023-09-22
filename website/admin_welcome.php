@@ -2,15 +2,24 @@
 session_start();
 include("connection.php");
 $user = $_SESSION['user'];
-$balance = $_SESSION['balance'];
 $userID = $_SESSION['ID'];
+
+$sql = "SELECT Balance 
+        FROM user
+        WHERE Name = ? ";
+
+$stmt = $conn->prepare($sql);
+$stmt->bind_param("s", $user);
+$stmt->execute();
+$stmt->bind_result($currentBalance);
+$stmt->fetch();
+$stmt->close();
 
 
 $sqlFetchUsers = "SELECT * From user";
 $resultFetchUsers = mysqli_query($conn, $sqlFetchUsers);
 $sqlFetchProducts = "SELECT * From product";
 $resultFetchProducts = mysqli_query($conn, $sqlFetchProducts);
-
 
 $userList = '';
 while ($row = mysqli_fetch_assoc($resultFetchUsers)) {
@@ -37,7 +46,7 @@ while ($row = mysqli_fetch_assoc($resultFetchProducts)) {
 
 <head>
     <h1>
-        Hello <?php echo $user . ". Your balance is " . number_format($balance, 2) . "€"; ?>.
+        Hello <?php echo $user . ". Your balance is " . number_format($currentBalance, 2) . "€"; ?>.
     </h1>
 </head>
 
@@ -47,6 +56,11 @@ while ($row = mysqli_fetch_assoc($resultFetchProducts)) {
 <button onclick="navigateTo('add_product.php')">add product</button>
 <button onclick="navigateTo('index.php')"> log out</button>
 <button onclick="navigateTo('change_password.php')"> change password</button>
+<br>
+<button onclick="pay('Coffee')">Coffee</button>
+<button onclick="pay('Double Coffee')"> Double Coffee</button>
+<button onclick="pay('Espresso')">Espresso</button>
+<button onclick="pay('Double Espresso')">Double Espresso</button>
 
 
 <br><br>
@@ -70,14 +84,12 @@ while ($row = mysqli_fetch_assoc($resultFetchProducts)) {
             alert("deleting process failed !");
         }
     }
+    function pay(drink){
+        navigateTo("pay.php?drink="+encodeURIComponent(drink));
+    }
 </script>
 <p></p>
-<!--
-<button onclick="updateBalance(5)">charge 5</button>
-<button onclick="updateBalance(10)">charge 10</button>
-<button onclick="pay(0.5)">pay 0.5€</button>
-<button onclick="setBalanceToZero()">clear</button>
--->
+
 
 <ul>
     <h3>Users:</h3>

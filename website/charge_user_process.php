@@ -2,7 +2,7 @@
 include("connection.php");
 
 $name = $_GET['name'];
-$money_paid = $_POST['money_paid'];
+$money_plus = $_POST['money_plus'];
 
 $sql = "SELECT Balance 
         FROM user
@@ -15,7 +15,7 @@ $stmt->bind_result($currentBalance);
 $stmt->fetch();
 $stmt->close();
 
-$updatedBalance = $currentBalance + $money_paid;
+$updatedBalance = $currentBalance + $money_plus;
 
 $sqlUpdate = "UPDATE user 
             SET Balance = ?
