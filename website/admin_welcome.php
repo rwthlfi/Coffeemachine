@@ -61,6 +61,8 @@ while ($row = mysqli_fetch_assoc($resultFetchProducts)) {
 <button onclick="pay('Double Coffee')"> Double Coffee</button>
 <button onclick="pay('Espresso')">Espresso</button>
 <button onclick="pay('Double Espresso')">Double Espresso</button>
+<br>
+<button onclick="navigateTo('order_log.php')">ORDER LOG</button>
 
 
 <br><br>

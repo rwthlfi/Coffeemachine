@@ -20,6 +20,16 @@ if($drinkPrice == NULL){
     echo '<script>window.location.href = "admin_welcome.php"</script>';
     exit;
 }
+$sqlGetDrinkID = "SELECT ID 
+FROM product
+WHERE Name = ?";
+$stmtGetDrinkPrice = $conn->prepare($sqlGetDrinkID);
+$stmtGetDrinkPrice->bind_param("s",$drinkName);
+$stmtGetDrinkPrice->execute();
+$stmtGetDrinkPrice->bind_result($drinkID);
+$stmtGetDrinkPrice->fetch();
+$stmtGetDrinkPrice->close();
+
 
 $sqlGetUserBalance = "SELECT Balance 
 FROM user
@@ -33,18 +43,23 @@ $stmtGetUserBalance->close();
 
 $userNewBalance = $userOldBalance - $drinkPrice;
 
-
-
-
-
-
 $sqlUpdateUserBalance = "UPDATE user
 SET Balance = ? WHERE ID = ?";
 $stmtUpdateUserBalance = $conn->prepare($sqlUpdateUserBalance);
 $stmtUpdateUserBalance->bind_param("di", $userNewBalance, $userID);
 if($stmtUpdateUserBalance->execute()){
-    echo '<script>alert("Your balance has been successfully updated !")</script>';
-    echo '<script>window.location.href = "admin_welcome.php"</script>';
+    echo '<script>alert("Your new balance is ' .  number_format($userNewBalance,2) . '€.")</script>';
+    
+    $sqlInsertOrder = "INSERT INTO order_log (User_ID, Product_ID, Old_Balance, New_Balance)
+    VALUES (?, ?, ?, ?)";   
+    $stmtInsretOrder = $conn->prepare($sqlInsertOrder);
+    $stmtInsretOrder->bind_param("iidd",$userID,$drinkID, $userOldBalance, $userNewBalance);
+    if($stmtInsretOrder->execute()){
+        echo '<script>alert("Your order has been successfully added to the order log")</script>';
+    } else{
+        echo '<script>alert("Failed to add your order to the order log !")</script>';
+    }
+    echo '<script>window.location.href = "admin_welcome.php"</script>';    
     
 }else{
     echo '<script>alert("ERROR !")</script>';
