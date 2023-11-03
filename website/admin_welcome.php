@@ -62,7 +62,7 @@ while ($row = mysqli_fetch_assoc($resultFetchProducts)) {
 <button onclick="pay('Espresso')">Espresso</button>
 <button onclick="pay('Double Espresso')">Double Espresso</button>
 <br>
-<button onclick="navigateTo('order_log.php')">ORDER LOG</button>
+<button onclick="navigateTo('log.php')">LOG</button>
 
 
 <br><br>
