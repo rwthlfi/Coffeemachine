@@ -1,19 +1,5 @@
-<!--
-How would it be if I put all information from the two tables together in one in the right order and then do the while loop thing ?!
 
-SELECT Log_Type, Log_ID, User_ID, Log_Item_ID, Charge_Amount, Balance, Timestamp
-FROM (
-    SELECT 'Order' AS Log_Type, Order_ID AS Log_ID, User_ID, Product_ID AS Log_Item_ID, NULL AS Charge_Amount, Old_Balance AS Balance, Timestamp
-    FROM order_log
-    UNION ALL
-    SELECT 'Charge' AS Log_Type, Charge_ID AS Log_ID, User_ID, NULL AS Log_Item_ID, Amount_Charged AS Charge_Amount, New_Balance AS Balance, Timestamp
-    FROM charge_log
-) AS CombinedLog
-ORDER BY Timestamp DESC;
-
-
-//Code before:-->
-<h1>COMBINED LOG</h1>
+<h1>LOG</h1>
 
 <?php
 include("connection.php");
