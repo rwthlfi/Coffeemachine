@@ -1,0 +1,68 @@
+
+html {
+	font-size:62.5%;
+}
+* {
+	margin: 0;
+	padding: 0;
+}
+ul, li {
+	list-style: none;
+}
+input {
+	border: none;
+}
+body {
+  width: 80rem;
+}.frame-06-BSb {
+  width: 100%;
+  height: 48rem;
+  overflow: hidden;
+  position: relative;
+
+  .page-jyu {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    box-shadow: 0 0.4rem 0.4rem rgba(0, 0, 0, 0.25);
+    background-color: #ffffff;
+
+    .logo-Vy5 {
+      top: 0;
+      object-fit: cover;
+      vertical-align: top;
+      width: 34.5rem;
+      height: 48rem;
+      position: absolute;
+      left: 22.8rem;
+    }
+    .pop-window-qX9 {
+      background-color: #efefef;
+      border-radius: 2rem;
+      width: 55rem;
+      height: 30rem;
+      position: absolute;
+      left: 12.5rem;
+      top: 9rem;
+      overflow: hidden;
+      box-shadow: 0 0.4rem 0.4rem rgba(0, 0, 0, 0.25);
+    }
+    .espresso-kommt-KhD {
+      position: absolute;
+      line-height: 1;
+      white-space: nowrap;
+      width: 29.4rem;
+      left: 25.35rem;
+      top: 22.8rem;
+      display: flex;
+      align-items: center;
+      color: #0071bd;
+      height: 3.2rem;
+      font-size: 3.2rem;
+      letter-spacing: 0.1rem;
+      justify-content: center;
+      font-weight: 400;
+      font-family: Inter, 'Source Sans Pro';
+    }
+  }
+}

@@ -1,0 +1,84 @@
+
+html {
+	font-size:62.5%;
+}
+* {
+	margin: 0;
+	padding: 0;
+}
+ul, li {
+	list-style: none;
+}
+input {
+	border: none;
+}
+body {
+  width: 80rem;
+}.frame-27-k2X {
+  width: 100%;
+  height: 48rem;
+  overflow: hidden;
+  position: relative;
+}
+.frame-27-k2X .page-GmZ {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  box-shadow: 0 0.4rem 0.4rem rgba(0, 0, 0, 0.25);
+  background-color: #ffffff;
+}
+.frame-27-k2X .page-GmZ .logo-dMD {
+  width: 34.5rem;
+  height: 48rem;
+  position: absolute;
+  left: 22.8rem;
+  top: 0;
+  object-fit: cover;
+  vertical-align: top;
+}
+.frame-27-k2X .page-GmZ .pop-window-mTR {
+  width: 55rem;
+  height: 30rem;
+  position: absolute;
+  left: 12.5rem;
+  top: 9rem;
+  overflow: hidden;
+  box-shadow: 0 0.4rem 0.4rem rgba(0, 0, 0, 0.25);
+  background-color: #efefef;
+  border-radius: 2rem;
+}
+.frame-27-k2X .page-GmZ .die-brheinheit-wurde-nach-der-reinigung-nicht-wieder-eingesetzt-SJf {
+  width: 51.6rem;
+  height: 9.6rem;
+  position: absolute;
+  left: 14.2rem;
+  top: 15.3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 3.2rem;
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: 0.1rem;
+  color: #ff0000;
+  font-family: Inter, 'Source Sans Pro';
+}
+.frame-27-k2X .page-GmZ .button-yC7 {
+  width: 7rem;
+  height: 7rem;
+  position: absolute;
+  left: 59.5rem;
+  top: 31rem;
+  object-fit: contain;
+  vertical-align: top;
+  border-radius: 1rem;
+}
+.frame-27-k2X .page-GmZ .icon-park-outline-attention-h87 {
+  width: 5.4167rem;
+  height: 5.4167rem;
+  position: absolute;
+  left: 37.2417rem;
+  top: 26.8417rem;
+  object-fit: contain;
+  vertical-align: top;
+}

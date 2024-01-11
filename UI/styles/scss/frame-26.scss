@@ -1,0 +1,82 @@
+
+html {
+	font-size:62.5%;
+}
+* {
+	margin: 0;
+	padding: 0;
+}
+ul, li {
+	list-style: none;
+}
+input {
+	border: none;
+}
+body {
+  width: 80rem;
+}.frame-26-Y4B {
+  position: relative;
+  width: 100%;
+  height: 48rem;
+  overflow: hidden;
+
+  .page-HnT {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    box-shadow: 0 0.4rem 0.4rem rgba(0, 0, 0, 0.25);
+    background-color: #ffffff;
+
+    .logo-qoy {
+      position: absolute;
+      left: 22.8rem;
+      top: 0;
+      object-fit: cover;
+      vertical-align: top;
+      width: 34.5rem;
+      height: 48rem;
+    }
+    .pop-window-mxX {
+      background-color: #efefef;
+      height: 30rem;
+      position: absolute;
+      top: 9rem;
+      overflow: hidden;
+      width: 55rem;
+      left: 12.5rem;
+      box-shadow: 0 0.4rem 0.4rem rgba(0, 0, 0, 0.25);
+      border-radius: 2rem;
+    }
+    .bitte-fllen-sie-den-kaffeebohnenbehlter-auf-oder-reinigen-sie-den-einfllschacht-mit-hilfe-eines-messers-4Aw {
+      align-items: center;
+      font-weight: 400;
+      letter-spacing: 0.1rem;
+      position: absolute;
+      height: 12.8rem;
+      left: 14.45rem;
+      top: 17.6rem;
+      display: flex;
+      font-size: 3.2rem;
+      line-height: 1;
+      width: 51.1rem;
+      color: #0071bd;
+      font-family: Inter, 'Source Sans Pro';
+      justify-content: center;
+    }
+    .weitere-informationen-finden-sie-in-der-gebrauchsanleitung-5rj {
+      height: 5.9rem;
+      left: 18.05rem;
+      display: flex;
+      font-size: 2.4rem;
+      font-weight: 400;
+      color: #0071bd;
+      font-family: Inter, 'Source Sans Pro';
+      width: 44.1rem;
+      position: absolute;
+      top: 33.15rem;
+      align-items: center;
+      justify-content: center;
+      line-height: 1.2125;
+    }
+  }
+}
