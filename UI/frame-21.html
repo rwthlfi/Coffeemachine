@@ -28,10 +28,56 @@
 
     wurde nicht eingefüllt.
     </div>
-    <img class="streamline-coffee-bean-YLB" src="./assets/streamline-coffee-bean-NWX.png"/>
-    <img class="streamline-coffee-bean-4ZR" src="./assets/streamline-coffee-bean.png"/>
-    <img class="streamline-coffee-bean-anf" src="./assets/streamline-coffee-bean-DnT.png"/>
-    <img class="button-hsH" src="./assets/button-hHd.png"/>
+    <img class="streamline-coffee-bean-YLB" src="./assets/Coffee_Bean.png"/>
+    <img class="streamline-coffee-bean-4ZR" src="./assets/Coffee_Bean.png"/>
+    <img class="streamline-coffee-bean-anf" src="./assets/Coffee_Bean.png"/>
+    <img class="button-hsH" src="./assets/Help.png" onclick="handleButtonClick(this,'./assets/Help_Pressed.png')"/>
   </div>
 </div>
+<script>
+
+  function updateCurrentTimeDate() {
+    var currentTimeDateElement = document.getElementById('current-time/date');
+
+    if (currentTimeDateElement) {
+      var now = new Date();
+      var timeString = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+      var dateString = now.toLocaleDateString([], { day: "2-digit", month: "2-digit", year: "numeric" });
+
+      currentTimeDateElement.innerHTML = timeString + '&nbsp;&nbsp;&nbsp;' + dateString;
+    }
+  }
+
+  function handleButtonClick(buttonElement, newImagePath) {
+
+    var targetHTML = 'frame-22.html';
+
+
+    var originalSrc = buttonElement.src;
+
+    buttonElement.src = newImagePath;
+
+    setTimeout(function () {
+      buttonElement.src = originalSrc;
+    }, 100);
+
+    setTimeout(function () {
+      window.location.href = targetHTML;
+    }, 200);
+
+    var timer = setInterval(function () {
+      // Check conditions and redirect back to 'frame-04.html'
+      if (window.location.href !== targetHTML) {
+        clearInterval(timer); // Stop the interval
+        window.location.href = 'frame-09.html';
+      }
+    }, 1000); // Check every 1 second);
+
+  }
+
+  setInterval(updateCurrentTimeDate, 1000);
+
+  updateCurrentTimeDate();
+
+</script>
 </body>
