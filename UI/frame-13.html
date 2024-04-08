@@ -17,8 +17,54 @@
     <div class="pop-window-o5V">
     </div>
     <div class="der-kaffeesatzbehlter-ist-voll-WEo">Der Kaffeesatzbehälter ist voll.</div>
-    <img class="streamline-coffee-bean-ni7" src="./assets/streamline-coffee-bean-dtf.png"/>
-    <img class="button-6io" src="./assets/button-WM9.png"/>
+    <img class="streamline-coffee-bean-ni7" src="./assets/Coffee_Bean.png"/>
+    <img class="button-6io" src="./assets/Help.png" onclick="handleButtonClick(this,'./assets/Help_Pressed.png')"/>
   </div>
 </div>
+<script>
+
+  function updateCurrentTimeDate() {
+    var currentTimeDateElement = document.getElementById('current-time/date');
+
+    if (currentTimeDateElement) {
+      var now = new Date();
+      var timeString = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+      var dateString = now.toLocaleDateString([], { day: "2-digit", month: "2-digit", year: "numeric" });
+
+      currentTimeDateElement.innerHTML = timeString + '&nbsp;&nbsp;&nbsp;' + dateString;
+    }
+  }
+
+  function handleButtonClick(buttonElement, newImagePath) {
+
+    var targetHTML = 'frame-14.html';
+
+
+    var originalSrc = buttonElement.src;
+
+    buttonElement.src = newImagePath;
+
+    setTimeout(function () {
+      buttonElement.src = originalSrc;
+    }, 100);
+
+    setTimeout(function () {
+      window.location.href = targetHTML;
+    }, 200);
+
+    var timer = setInterval(function () {
+      // Check conditions and redirect back to 'frame-04.html'
+      if (window.location.href !== targetHTML) {
+        clearInterval(timer); // Stop the interval
+        window.location.href = 'frame-09.html';
+      }
+    }, 1000); // Check every 1 second);
+
+  }
+
+  setInterval(updateCurrentTimeDate, 1000);
+
+  updateCurrentTimeDate();
+
+</script>
 </body>
