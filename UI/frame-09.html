@@ -19,49 +19,9 @@
       <div class="pop-window-5hm">
       </div>
       <div class="das-wasser-im-tank-ist-nicht-ausreichend-PCf">Das Wasser im Tank ist nicht ausreichend!</div>
-      <img class="button-FEs" src="./assets/Help.png" onclick="handleButtonClick(this,'./assets/Help_Pressed.png')" />
+      <img class="button-FEs" src="./assets/Help.png" onclick="handleButtonClick(this,'./assets/Help_Pressed.png', 'frame-10.html')" />
       <img class="mdi-drop-outline-ZmM" src="./assets/mdi-drop-outline.png" />
     </div>
   </div>
-  <script>
-
-    function updateCurrentTimeDate() {
-      var currentTimeDateElement = document.getElementById('current-time/date');
-
-      if (currentTimeDateElement) {
-        var now = new Date();
-        var timeString = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
-        var dateString = now.toLocaleDateString([], { day: "2-digit", month: "2-digit", year: "numeric" });
-
-        currentTimeDateElement.innerHTML = timeString + '&nbsp;&nbsp;&nbsp;' + dateString;
-      }
-    }
-
-    function handleButtonClick(buttonElement, newImagePath) {
-
-      var targetHTML = 'frame-10.html';
-      var originalSrc = buttonElement.src;
-
-      buttonElement.src = newImagePath;
-
-
-      setTimeout(function() {
-        buttonElement.src = originalSrc; 
-      }, 100);
-      setTimeout(function() {
-        window.location.href = targetHTML; 
-      }, 100);
-      /*setTimeout(function() {
-        window.location.href = 'frame-09.html'; 
-      }, 2000);*/
-
-
-      
-}
-
-    setInterval(updateCurrentTimeDate, 1000);
-
-    updateCurrentTimeDate();
-
-  </script>
+  <script src="js/infopopupwindow.js"></script>
 </body>
