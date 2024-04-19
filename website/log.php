@@ -37,6 +37,17 @@ $resultFetchChargeLogs = mysqli_query($conn, $sqlFetchChargeLogs);
 // Combine and sort the results
 $combinedLogs = array();
 
+// Fetch and process order logs
+while ($row = mysqli_fetch_assoc($resultFetchOrderLogs)) {
+   $row['type'] = 'Order';
+   $combinedLogs[] = $row;
+}
+
+// Fetch and process charge logs
+while ($row = mysqli_fetch_assoc($resultFetchChargeLogs)) {
+   $row['type'] = 'Charge';
+   $combinedLogs[] = $row;
+}
 
 
 // Sort the combined logs by timestampa
