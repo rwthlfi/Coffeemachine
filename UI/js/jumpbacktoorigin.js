@@ -6,8 +6,8 @@
 
   frameNumber = pathName.substring(startIndex, endIndex);
   if (frameNumber <= 10){
-    previousFrameURL = 'frame-0' + (frameNumber-1) + '.html';
-  } else{
+    previousFrameURL = 'frame-0' + (frameNumber - 1) + '.html';
+  } else {
     // Construct the URL for the previous frame based on the frame number
     previousFrameURL = 'frame-' + (frameNumber - 1) + '.html';
   }
