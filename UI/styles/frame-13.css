@@ -35,6 +35,7 @@ body {
   top: 0;
   object-fit: cover;
   vertical-align: top;
+  opacity: 0.5;
 }
 .frame-13-9md .page-Vab .pop-window-o5V {
   width: 55rem;
