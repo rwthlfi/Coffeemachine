@@ -2,13 +2,16 @@ from flask import Flask, render_template, request
 import RPi.GPIO as GPIO
 import time
 
+GPIO.cleanup()
+
 app = Flask(__name__)
 
-relais_pins = [5, 6, 13, 19, 12, 16, 20]
+relais_pins = [12, 1, 14, 7, 13, 21, 16, 20]
 
 for pin in relais_pins:
     GPIO.setmode(GPIO.BCM)
     GPIO.setup(pin, GPIO.OUT)
+    GPIO.output(pin, GPIO.LOW)
 
 def get_len(lst):
     return len(lst)

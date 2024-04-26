@@ -2,15 +2,15 @@ from gpiozero import DigitalInputDevice
 import RPi.GPIO as GPIO
 import time
 
-LED_GPIO_PIN_1 = 25
-LED_GPIO_PIN_2 = 20
-LED_GPIO_PIN_3 = 21
-LED_GPIO_PIN_4 = 16  
-LED_GPIO_PIN_5 = 26
-LED_GPIO_PIN_6 = 19
-LED_GPIO_PIN_7 = 13
-LED_GPIO_PIN_8 = 6
-LED_GPIO_PIN_9 = 5
+LED_GPIO_PIN_1 = 6 #31
+LED_GPIO_PIN_2 = 18 #12
+LED_GPIO_PIN_3 = 24 #18
+LED_GPIO_PIN_4 = 5 #29 
+LED_GPIO_PIN_5 = 15 #10
+LED_GPIO_PIN_6 = 14 #8
+LED_GPIO_PIN_7 = 19 #35
+LED_GPIO_PIN_8 = 0 #27
+LED_GPIO_PIN_9 = 17 #11
 
 GPIO.setmode(GPIO.BCM)
 GPIO.setup(LED_GPIO_PIN_1, GPIO.IN)
@@ -84,7 +84,7 @@ try:
             if not previous_states[LED_GPIO_PIN_6] and not GPIO.input(LED_GPIO_PIN_6):
                 print("Der Kaffesatzbehälter fehlt: Kaffesatzbehälter einsetzen") 
             if is_blinking(LED_GPIO_PIN_6, 2, 2):
-                print("DerKaffeesatzbehälter ist voll und muss geleert werden.")   
+                print("Der Kaffeesatzbehälter ist voll und muss geleert werden.")   
             if not previous_states[LED_GPIO_PIN_7] and not GPIO.input(LED_GPIO_PIN_7):
                 print("Der Wassertank fehlt.") 
             if is_blinking(LED_GPIO_PIN_7, 2, 2):
