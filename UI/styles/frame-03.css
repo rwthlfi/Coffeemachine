@@ -35,6 +35,7 @@ body {
   top: 0;
   object-fit: cover;
   vertical-align: top;
+  opacity: 0.5;
 }
 .frame-03-vsD .page-gLb .pop-window-x3D {
   width: 55rem;

@@ -33,6 +33,7 @@ body {
   top: 0;
   object-fit: cover;
   vertical-align: top;
+  opacity: 0.5;
 }
 .frame-01-5Py .page-dRV .lock-XFy {
   width: 54.6rem;
@@ -98,4 +99,5 @@ body {
   color: #0071bd;
   font-family: Inter, 'Source Sans Pro';
   flex-shrink: 0;
+  text-align: center;
 }
