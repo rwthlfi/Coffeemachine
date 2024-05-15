@@ -11,7 +11,6 @@ $balance = $_SESSION['balance'];
     Hello <?php echo $user . ". Your balance is " . number_format($balance, 2) . "€"; ?>.
     </h1>
     <br>
-    <button>change password</button>
 </head>
 
 

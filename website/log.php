@@ -62,7 +62,7 @@ foreach ($combinedLogs as $log) {
     . $log['User_Name'] . //in case Order
     ($logType === 'Order' ? ' has ordered: ' . $log['Product_Name'] :
     //in case Charge
-    ' has added ' . number_format($log['Amount'], 2) . '€ to his/her account.') .  
+    ' has added ' . number_format($log['Amount'],2) . '€ to his/her account.') .  
     ' Timestamp: ' . $log['Timestamp'] . '</li>';
 }
 
