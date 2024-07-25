@@ -1,5 +1,57 @@
-<!DOCTYPE html>
-<html>
+<?php
+session_start();
+include("connection.php");
+/*
+run this python code and compare this print(id) value with NFC-Tags of users then:
+- mark user name and balance and save them so you show their specific information in the further frames
+- do the log in
+
+
+import RPi.GPIO as GPIO
+from mfrc522 import SimpleMFRC522
+
+reader = SimpleMFRC522()
+try:
+        id, text = reader.read()
+        print(id)
+        print(text)
+finally:
+        GPIO.cleanup()
+
+*/
+function getNFCTagId() {
+  $output = null;
+  $returnValue = null;
+
+  exec("python3 /rfid/read.py", $output, $returnValue);
+  if ($returnValue == 0 && !empty($output)){
+    return trim($output[0]);
+  }
+  return null;
+}
+$nfcTagId = getNFCTagId();
+
+if ($nfcTagId) {
+  $sql = "SELECT Name, Balance FROM user WHERE NFC_Tag = ?";
+  $stmt = $conn->prepare($sql);
+  $stmt->bind_param("i", $nfcTagId)
+  $stmt->execute();
+  $stmt->bind_result($name, $balance);
+  $stmt->fetch();
+  $stmt->close();
+
+  if ($name) {
+    $_SESSION['name'] = $name;
+    $_SESSION['balance'] = $balance;
+
+    header("Location: frame-04.html");
+  } else {
+    header("Location: frame-02.html");
+  }
+}
+
+?>
+
 
 <head>
   <meta charset="utf-8" />
