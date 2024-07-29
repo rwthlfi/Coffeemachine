@@ -34,7 +34,7 @@ $nfcTagId = getNFCTagId();
 if ($nfcTagId) {
   $sql = "SELECT Name, Balance FROM user WHERE NFC_Tag = ?";
   $stmt = $conn->prepare($sql);
-  $stmt->bind_param("i", $nfcTagId)
+  $stmt->bind_param("i", $nfcTagId);
   $stmt->execute();
   $stmt->bind_result($name, $balance);
   $stmt->fetch();
