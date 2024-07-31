@@ -1,54 +1,62 @@
 <?php
 session_start();
 include("connection.php");
-/*
-run this python code and compare this print(id) value with NFC-Tags of users then:
-- mark user name and balance and save them so you show their specific information in the further frames
-- do the log in
 
-
-import RPi.GPIO as GPIO
-from mfrc522 import SimpleMFRC522
-
-reader = SimpleMFRC522()
-try:
-        id, text = reader.read()
-        print(id)
-        print(text)
-finally:
-        GPIO.cleanup()
-
-*/
 function getNFCTagId() {
   $output = null;
   $returnValue = null;
 
-  exec("python3 /rfid/read.py", $output, $returnValue);
+  exec("sudo python3 /home/it/Kaffemaschine/rfid/read.py", $output, $returnValue);
+
+  foreach($output as $line) {
+    echo "$line\n";
+
+  }
+  
   if ($returnValue == 0 && !empty($output)){
     return trim($output[0]);
   }
   return null;
 }
+$nfcTagId = null;
+
+while ($nfcTagId === null) {
+    $nfcTagId = getNFCTagId();
+    if ($nfcTagId === null) {
+        sleep(1); // Wait for 1 second before retrying
+    }
+}
+
 $nfcTagId = getNFCTagId();
 
 if ($nfcTagId) {
-  $sql = "SELECT Name, Balance FROM user WHERE NFC_Tag = ?";
+  global $conn; // Ensure $conn is in the global scope
+
+  $sql = "SELECT Name, Balance FROM user WHERE 'NFC-Tag' = ?";
   $stmt = $conn->prepare($sql);
   $stmt->bind_param("i", $nfcTagId);
   $stmt->execute();
   $stmt->bind_result($name, $balance);
   $stmt->fetch();
   $stmt->close();
-
+  echo("statement works! ---------------------- ");
+  
   if ($name) {
     $_SESSION['name'] = $name;
     $_SESSION['balance'] = $balance;
-
     header("Location: frame-04.html");
+    exit;
+
   } else {
     header("Location: frame-02.html");
+    exit;
+
   }
+} else {
+  echo "Failed to read NFC tag.";
 }
+$conn->close();
+ob_end_flush();
 
 ?>
 
