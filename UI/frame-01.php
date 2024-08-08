@@ -1,64 +1,3 @@
-<?php
-session_start();
-include("connection.php");
-
-function getNFCTagId() {
-  $output = null;
-  $returnValue = null;
-
-  exec("sudo python3 /home/it/Kaffemaschine/rfid/read.py", $output, $returnValue);
-
-  foreach($output as $line) {
-    echo "$line\n";
-
-  }
-  
-  if ($returnValue == 0 && !empty($output)){
-    return trim($output[0]);
-  }
-  return null;
-}
-$nfcTagId = null;
-
-while ($nfcTagId === null) {
-    $nfcTagId = getNFCTagId();
-    if ($nfcTagId === null) {
-        sleep(1); // Wait for 1 second before retrying
-    }
-}
-
-$nfcTagId = getNFCTagId();
-
-if ($nfcTagId) {
-  global $conn; // Ensure $conn is in the global scope
-
-  $sql = "SELECT Name, Balance FROM user WHERE 'NFC-Tag' = ?";
-  $stmt = $conn->prepare($sql);
-  $stmt->bind_param("i", $nfcTagId);
-  $stmt->execute();
-  $stmt->bind_result($name, $balance);
-  $stmt->fetch();
-  $stmt->close();
-  echo("statement works! ---------------------- ");
-  
-  if ($name) {
-    $_SESSION['name'] = $name;
-    $_SESSION['balance'] = $balance;
-    header("Location: frame-04.html");
-    exit;
-
-  } else {
-    header("Location: frame-02.html");
-    exit;
-
-  }
-} else {
-  echo "Failed to read NFC tag.";
-}
-$conn->close();
-ob_end_flush();
-
-?>
 
 
 <head>
@@ -113,3 +52,98 @@ ob_end_flush();
     </div>
   </div>
 </body>
+
+<?php
+
+session_start();
+
+include("connection.php");
+
+
+function getNFCTagId() {
+  $output = [];
+  $returnValue = null;
+
+  exec("sudo python3 /usr/local/bin/coffeemachine/Kaffemaschine/rfid/read.py 2>&1", $output, $returnValue);
+
+  foreach($output as $line) {
+    echo "$line:\n";
+  }
+  echo "Return value: $returnValue\n";
+  
+  if ($returnValue == 0 && !empty($output)){
+    return trim($output[0]);
+  }
+  return null;
+}
+/*
+// Attempt to read the NFC tag multiple times with a delay
+$maxRetries = 2;  // Maximum number of attempts
+$retryInterval = 1;  // Delay between attempts in seconds
+$attempt = 0;
+$nfcTagId = null;
+
+
+ while ($attempt < $maxRetries) {
+  $nfcTagId = getNFCTagId();
+  if ($nfcTagId != null) {
+    break;              
+  }
+  $attempt++;
+  sleep($retryInterval);  // Delay to prevent excessive CPU usage
+} */
+$nfcTagId = getNFCTagId();
+// Print the result
+/* if ($nfcTagId != null) {
+
+
+  echo "NFC Tag ID: $nfcTagId !\n";
+} else {
+  echo "No NFC Tag detected after $maxRetries attempts!\n";
+}  */
+
+/* if ($nfcTagId) {
+    echo "User with NFC-Tag = $nfcTagId exists !";
+  } else {
+  echo "User with NFC-Tag = $nfcTagId does not exists !";
+}  */
+
+/* if (!$conn) {
+  echo "no connection!!!!!!!!!!";
+  die("Connection failed: " . mysqli_connect_error());
+} else {
+  echo "yes connection!!!!!!!!!";
+} */
+
+
+$sql = "SELECT Name, Balance FROM user WHERE NFCTag = ?";
+$stmt = $conn->prepare($sql);
+$stmt->bind_param("s", $nfcTagId);
+$stmt->execute();
+$stmt->bind_result($name, $balance);
+$stmt->fetch();
+$stmt->close();
+
+if ($name) {
+  $_SESSION['name'] = $name;
+  $_SESSION['balance'] = $balance;
+  echo"name = $name and balance is $balance";
+  //header("Location: frame-04.html");
+    
+  exit;
+
+} else {
+  echo "name = $name and balance is $balance";
+  //header("Location: frame-02.html");
+  exit;
+}
+/*   else {
+  echo "Failed to read NFC tag."; */
+$conn->close();
+ob_end_flush();
+
+
+?>
+
+
+
