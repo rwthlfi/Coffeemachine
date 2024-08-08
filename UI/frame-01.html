@@ -1,0 +1,75 @@
+
+
+<head>
+  <meta charset="utf-8" />
+  <link rel="icon" href="/favicon.ico" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#000000" />
+  <title>Frame 01</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter%3A400" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro%3A400" />
+  <link rel="stylesheet" href="./styles/frame-01.css" />
+</head>
+
+<body>
+  <div class="frame-01-5Py">
+    <div class="page-dRV">
+      <img class="logo-b7R" src="./assets/Logo.png" />
+      <div class="lock-XFy">
+        <div id="current-time" class="item-07-00-qGf"></div>
+        <div id="current-date" class="item-01012024-7EB"></div>
+        <div class="hallo-QDH">Hallo!</div>
+        <div class="bitte-halten-sie-ihren-nfc-tag-an-den-scanner-4Hq">Bitte halten Sie Ihren NFC-Tag an den Scanner.
+        </div>
+      </div>
+      <div id="nfc-status" class="nfc-status"></div>
+      <script>
+        function updateCurrentTime() {
+          var currentTimeElement = document.getElementById('current-time');
+
+          if (currentTimeElement) {
+            var now = new Date();
+            var timeString = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+
+            currentTimeElement.textContent = timeString;
+          }
+        }
+        setInterval(updateCurrentTime, 1000);
+
+        updateCurrentTime();
+        function updateCurrentDate() {
+          var currentDateElement = document.getElementById('current-date');
+
+          if (currentDateElement) {
+            var now = new Date();
+            var dateString = now.toLocaleDateString([], { day: "2-digit", month: "2-digit", year: "numeric" });
+
+            currentDateElement.textContent = dateString;
+          }
+        }
+        setInterval(updateCurrentDate, 1000);
+        updateCurrentDate();
+        function checkNFCTag() {
+          var xhr = new XMLHttpRequest();
+          xhr.open('GET', 'check_nfc.php', true);
+          xhr.onreadystatechange = function () {
+            if (xhr.readyState == 4 && xhr.status == 200) {
+              document.getElementById('nfc-status').innerHTML = xhr.responseText;
+              if (xhr.responseText.includes('frame-04')) {
+                window.location.href = 'frame-04.html';
+              } else if (xhr.responseText.includes('frame-02')) {
+                window.location.href = 'frame-02.html';
+              }
+            }
+          };
+          xhr.send();
+        }
+        checkNFCTag();
+      </script>
+    </div>
+  </div>
+</body>
+
+
+
+
