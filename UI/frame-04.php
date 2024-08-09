@@ -4,7 +4,7 @@ session_start();
 // Check if the user is logged in
 if (!isset($_SESSION['name']) || !isset($_SESSION['balance'])) {
     // Redirect to the NFC scan page if the session variables are not set
-    header("Location: index.html");
+    header("Location: frame-01.html");
     exit();
 }
 
@@ -32,9 +32,8 @@ $balance = $_SESSION['balance'];
     <div class="page-88B">
       <img class="logo-sbZ" src="./assets/Logo.png" />
       <div class="hallo-hussein-idris-sie-haben-noch-1000-auf-ihrem-konto-1hm">
-        Hallo Hussein Idris!
-        <br />
-        Sie haben noch 10.00€ auf Ihrem Konto.
+        Hallo <?php echo htmlspecialchars($name); ?>! <br>
+        Sie haben noch <?php echo htmlspecialchars($balance); ?>€ auf Ihrem Konto.
       </div>
       <div id="current-time/date" class="item-07-00-01012024-qwh"></div>
       <img class="button-KXR" src="./assets/Coffee_Single.png"
@@ -70,19 +69,20 @@ $balance = $_SESSION['balance'];
         function handleButtonClick(buttonElement, newImagePath) {
 
           var targetHTML;
-          if (newImagePath.includes('Coffee')) {
+          if (newImagePath.includes('Coffee_Single')) {
             targetHTML = 'frame-05.html';
-          } else if (newImagePath.includes('Espresso')) {
+          } else if (newImagePath.includes('Coffee_Double')){
+            targetHTML ='frame-05-01.html'              
+          } else if (newImagePath.includes('Espresso_Single')) {
             targetHTML = 'frame-06.html';
-          }
-            else if (newImagePath.includes('Logout')){
+          } else if (newImagePath.includes('Espresso_Double')) {
+            targetHTML = 'frame-06-01.html';
+          } else if (newImagePath.includes('Logout')){
             targetHTML ='frame-01.html'              
-          }
-          else {
+          } else if (newImagePath.includes('Steam')){
             targetHTML = 'frame-07.html';
           }
-
-
+          
           var originalSrc = buttonElement.src;
 
           buttonElement.src = newImagePath;

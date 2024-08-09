@@ -9,6 +9,18 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter%3A400"/>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro%3A400"/>
   <link rel="stylesheet" href="./styles/frame-05.css"/>
+  <script>
+    // Set time duration for making one coffee
+    var timeTakenToMakeOneCoffee = 1000; // 1000 milliseconds = 1 second
+
+    // Function to navigate back to the home page
+    function navigateToHome() {
+      window.location.href = 'frame-04.php'; // Redirect to frame-04.php
+    }
+
+    // Set a timeout to navigate back after the coffee is done
+    setTimeout(navigateToHome, timeTakenToMakeOneCoffee);
+  </script>
 </head>
 <body>
 <div class="frame-05-t1Z">
@@ -20,3 +32,4 @@
   </div>
 </div>
 </body>
+</html>
