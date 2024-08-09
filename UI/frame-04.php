@@ -1,3 +1,17 @@
+<?php
+session_start();
+
+// Check if the user is logged in
+if (!isset($_SESSION['name']) || !isset($_SESSION['balance'])) {
+    // Redirect to the NFC scan page if the session variables are not set
+    header("Location: index.html");
+    exit();
+}
+
+$name = $_SESSION['name'];
+$balance = $_SESSION['balance'];
+?>
+
 <!DOCTYPE html>
 <html>
 
@@ -33,6 +47,8 @@
         onclick="handleButtonClick(this, './assets/Coffee_Double_Pressed.png')" />
       <img class="button-uRm" src="./assets/Espresso_Double.png"
         onclick="handleButtonClick(this, './assets/Espresso_Double_Pressed.png')" />
+      <img class="button-logout" src="./assets/Logout.png"
+        onclick="handleButtonClick(this, './assets/Logout_pressed.png')" />
       <div class="kaffee-UKm">Kaffee</div>
       <div class="espresso-9Ru">Espresso</div>
       <div class="dampf-2kb">Dampf</div>
@@ -58,7 +74,11 @@
             targetHTML = 'frame-05.html';
           } else if (newImagePath.includes('Espresso')) {
             targetHTML = 'frame-06.html';
-          } else {
+          }
+            else if (newImagePath.includes('Logout')){
+            targetHTML ='frame-01.html'              
+          }
+          else {
             targetHTML = 'frame-07.html';
           }
 
