@@ -59,7 +59,7 @@ if (!isset($name)) {
       <img class="logo-sbZ" src="./assets/Logo.png" />
       <div class="hallo-hussein-idris-sie-haben-noch-1000-auf-ihrem-konto-1hm">
         Hallo <?php echo htmlspecialchars($name); ?>! <br>
-        Sie haben noch <?php echo htmlspecialchars($balance); ?>€ auf Ihrem Konto.
+        Sie haben noch <?php echo number_format($balance, 2); ?>€ auf Ihrem Konto.
       </div>
       <div id="current-time/date" class="item-07-00-01012024-qwh"></div>
       <img class="button-KXR" src="./assets/Coffee_Single.png"
@@ -98,11 +98,11 @@ if (!isset($name)) {
           if (newImagePath.includes('Coffee_Single')) {
             targetHTML = 'frame-05.php';
           } else if (newImagePath.includes('Coffee_Double')){
-            targetHTML ='frame-05-01.html'              
+            targetHTML ='frame-05-01.php'              
           } else if (newImagePath.includes('Espresso_Single')) {
-            targetHTML = 'frame-06.html';
+            targetHTML = 'frame-06.php';
           } else if (newImagePath.includes('Espresso_Double')) {
-            targetHTML = 'frame-06-01.html';
+            targetHTML = 'frame-06-01.php';
           } else if (newImagePath.includes('Logout')){
             targetHTML ='frame-01.html'              
           } else if (newImagePath.includes('Steam')){
