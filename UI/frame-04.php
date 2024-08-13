@@ -1,15 +1,41 @@
 <?php
 session_start();
 
-// Check if the user is logged in
-if (!isset($_SESSION['name']) || !isset($_SESSION['balance'])) {
-    // Redirect to the NFC scan page if the session variables are not set
-    header("Location: frame-01.html");
-    exit();
+if (!isset($_SESSION['id'])) {
+  // Redirect to the NFC scan page if the session variables are not set
+  header("Location: frame-01.html");
+  exit();
 }
 
-$name = $_SESSION['name'];
-$balance = $_SESSION['balance'];
+
+$id = $_SESSION['id'];
+
+include("connection.php");
+
+
+
+
+
+$sqlCurrentUserInfo = "SELECT Name, Balance FROM user WHERE ID = ?";
+$stmtCurrentUserInfo = $conn->prepare($sqlCurrentUserInfo);
+$stmtCurrentUserInfo->bind_param("i", $id);
+$stmtCurrentUserInfo->execute();
+$stmtCurrentUserInfo->bind_result($name, $balance);
+$stmtCurrentUserInfo->fetch();
+$stmtCurrentUserInfo->close();
+$conn->close();
+
+
+if (!isset($name)) {
+  // Redirect to the NFC scan page if the session variables are not set
+  echo "user with id: $id is not found!";
+  exit();
+}
+
+// Check if the user is logged in
+
+//$name = $_SESSION['name'];
+//$balance = $_SESSION['balance'];
 ?>
 
 <!DOCTYPE html>
@@ -70,7 +96,7 @@ $balance = $_SESSION['balance'];
 
           var targetHTML;
           if (newImagePath.includes('Coffee_Single')) {
-            targetHTML = 'frame-05.html';
+            targetHTML = 'frame-05.php';
           } else if (newImagePath.includes('Coffee_Double')){
             targetHTML ='frame-05-01.html'              
           } else if (newImagePath.includes('Espresso_Single')) {
