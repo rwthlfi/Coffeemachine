@@ -7,13 +7,14 @@ $institute = $_POST['institute'];
 $email = $_POST['email'];
 $password = $_POST['password'];
 $balance = $_POST['balance'];
+$nfcId = $_POST['nfc'];
 $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 $sql = "INSERT INTO user
-(Name, Permission, Institute, Email, Password, Balance) 
+(Name, Permission, Institute, Email, Password, Balance, NFCTag) 
 VALUES
-(?,?,?,?,?,?)";
+(?,?,?,?,?,?,?)";
 $stmt = $conn->prepare($sql);
-$stmt->bind_param("sssssd", $name, $permission, $institute, $email, $hashedPassword, $balance);
+$stmt->bind_param("sssssdi", $name, $permission, $institute, $email, $hashedPassword, $balance, $nfcId);
 ?>
 
 <script>

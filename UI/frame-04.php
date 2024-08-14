@@ -122,10 +122,10 @@ if (!isset($name)) {
           }, 200);
 
           var timer = setInterval(function () {
-            // Check conditions and redirect back to 'frame-04.html'
+            // Check conditions and redirect back to 'frame-04.php'
             if (window.location.href !== targetHTML) {
               clearInterval(timer); // Stop the interval
-              window.location.href = 'frame-04.html';
+              window.location.href = 'frame-04.php';
             }
           }, 1000); // Check every 1 second);
 
