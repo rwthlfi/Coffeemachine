@@ -58,18 +58,18 @@ while ($row = mysqli_fetch_assoc($resultFetchProducts)) {
 </head>
 
 <p></p>
-<button onclick="navigateTo('admin_welcome.php')">home</button>
+<!--<button onclick="navigateTo('admin_welcome.php')">home</button>-->
 <button onclick="navigateTo('add_user.php')">add user</button>
 <button onclick="navigateTo('add_product.php')">add product</button>
-<button onclick="navigateTo('index.php')"> log out</button>
 <button onclick="navigateTo('change_password.php')"> change password</button>
-<br>
-<button onclick="pay('Coffee')">Coffee</button>
-<button onclick="pay('Double Coffee')"> Double Coffee</button>
-<button onclick="pay('Espresso')">Espresso</button>
-<button onclick="pay('Double Espresso')">Double Espresso</button>
-<br>
 <button onclick="navigateTo('log.php')">LOG</button>
+<button onclick="navigateTo('index.php')"> log out</button>
+<br>
+<!--<button onclick="pay('Coffee')">Coffee</button>                     -->
+<!--<button onclick="pay('Double Coffee')"> Double Coffee</button>      -->
+<!--<button onclick="pay('Espresso')">Espresso</button>                 -->
+<!--<button onclick="pay('Double Espresso')">Double Espresso</button>   -->
+<br>
 
 
 <br><br>
