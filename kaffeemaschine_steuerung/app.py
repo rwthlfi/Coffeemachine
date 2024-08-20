@@ -6,7 +6,7 @@ GPIO.cleanup()
 
 app = Flask(__name__)
 
-pins = [12, 1, 14, 7, 13, 21, 16, 20]
+pins = [12, 1, 7, 13, 20, 16, 21]
 
 for pin in pins:
     GPIO.setmode(GPIO.BCM)
