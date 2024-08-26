@@ -56,29 +56,55 @@ if (!isset($name)) {
 <body>
   <div class="frame-04-acT">
     <div class="page-88B">
+      <div id="current-time/date" class="date-and-time"></div>
       <img class="logo-sbZ" src="./assets/Logo.png" />
-      <div class="hallo-hussein-idris-sie-haben-noch-1000-auf-ihrem-konto-1hm">
-        Hallo <?php echo htmlspecialchars($name); ?>! <br>
+      <div class="greetings">
+        Hallo <?php echo htmlspecialchars($name); ?> ! <br>
         Sie haben noch <?php echo number_format($balance, 2); ?>€ auf Ihrem Konto.
       </div>
-      <div id="current-time/date" class="item-07-00-01012024-qwh"></div>
-      <img class="button-KXR" src="./assets/Coffee_Single.png"
-        onclick="handleButtonClick(this, './assets/Coffee_Single_Pressed.png')" />
-      <img class="button-AZy" src="./assets/Espresso_Single.png"
-        onclick="handleButtonClick(this, './assets/Espresso_Single_Pressed.png')" />
-      <img class="button-fdD" src="./assets/Steam.png"
-        onclick="handleButtonClick(this, './assets/Steam_Pressed.png')" />
-      <img class="button-pDH" src="./assets/Coffee_Double.png"
-        onclick="handleButtonClick(this, './assets/Coffee_Double_Pressed.png')" />
-      <img class="button-uRm" src="./assets/Espresso_Double.png"
-        onclick="handleButtonClick(this, './assets/Espresso_Double_Pressed.png')" />
-      <img class="button-logout" src="./assets/Logout.png"
-        onclick="handleButtonClick(this, './assets/Logout_pressed.png')" />
-      <div class="kaffee-UKm">Kaffee</div>
-      <div class="espresso-9Ru">Espresso</div>
-      <div class="dampf-2kb">Dampf</div>
-      <div class="x-kaffee-HgX">2x Kaffee</div>
-      <div class="x-espresso-aQj">2x Espresso</div>
+      <div class="buttons">
+        <!-- Coffee Single -->
+        <div class="button-container">
+          <img class="button-KXR" src="./assets/Coffee_Single.png"
+            onclick="handleButtonClick(this, './assets/Coffee_Single_Pressed.png')" />
+          <div class="kaffee-UKm">Kaffee</div>
+        </div>
+        <!-- Espresso Single -->
+        <div class="button-container">
+          <img class="button-AZy" src="./assets/Espresso_Single.png"
+            onclick="handleButtonClick(this, './assets/Espresso_Single_Pressed.png')" />
+          <div class="espresso-9Ru">Espresso</div>
+        </div>
+        <!-- Steam -->
+        <div class="button-container">
+          <img class="button-fdD" src="./assets/Steam.png"
+            onclick="handleButtonClick(this, './assets/Steam_Pressed.png')" />
+          <div class="dampf-2kb">Dampf</div>
+        </div>
+        <!-- Wash -->
+        <div class="button-container">
+          <img class="button-WaS" src="./assets/Wash.png"
+            onclick="handleButtonClick(this, './assets/Wash_Pressed.png')" />
+          <div class="wash-G9g">Reinigen <br> & <br> Entkalken</div>
+        </div>
+        <!-- Double Coffee -->
+        <div class="button-container">
+          <img class="button-pDH" src="./assets/Coffee_Double.png"
+            onclick="handleButtonClick(this, './assets/Coffee_Double_Pressed.png')" />
+          <div class="x-kaffee-HgX">2x Kaffee</div>
+        </div>
+        <!-- Double Espresso -->
+        <div class="button-container">
+          <img class="button-uRm" src="./assets/Espresso_Double.png"
+            onclick="handleButtonClick(this, './assets/Espresso_Double_Pressed.png')" />
+          <div class="x-espresso-aQj">2x Espresso</div>
+        </div>
+      </div>
+      <!-- Logout -->
+      <div class="button-container">
+        <img class="button-logout" src="./assets/Logout.png"
+          onclick="handleButtonClick(this, './assets/Logout_pressed.png')" />
+      </div>
       <script>
         function updateCurrentTimeDate() {
           var currentTimeDateElement = document.getElementById('current-time/date');
