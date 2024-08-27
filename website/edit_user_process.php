@@ -6,17 +6,18 @@ $newName = $_POST['name'];
 $newPermission = $_POST['permission'];
 $newInstitute = $_POST['institute'];
 $newEmail = $_POST['email'];
+$newNFC = $_POST['nfc'];
 //$newPassword = $_POST['password'];
 //$newBalance = $_POST['balance'];
 
 
 $sql = "UPDATE user
-        SET Name = ?, Permission = ?, Institute = ?, Email = ?
+        SET Name = ?, Permission = ?, Institute = ?, Email = ?, NFCTag = ?
         WHERE Name = ?";
 
 $stmt = $conn->prepare($sql);
 
-$stmt->bind_param("sssss", $newName, $newPermission, $newInstitute, $newEmail, $oldName);
+$stmt->bind_param("ssssss", $newName, $newPermission, $newInstitute, $newEmail, $newNFC, $oldName);
 if ($stmt->execute() == true) {
     echo "Record Updated successfully";
     echo '<script> setTimeout(function() {
