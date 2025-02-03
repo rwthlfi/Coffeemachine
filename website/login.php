@@ -34,7 +34,7 @@ if (isset($_POST['submit'])) {
             header("Location: welcome.php");
         }
     } else {
-        echo "hashed password : $hashedpassword";
+        echo "hashed password : $hashedPassword";
         echo '<script>
         window.location.href = "index.php";
         alert("login failed. Invalid username or password !!!")

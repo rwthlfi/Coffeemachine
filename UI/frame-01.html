@@ -1,5 +1,4 @@
-<!DOCTYPE html>
-<html>
+
 
 <head>
   <meta charset="utf-8" />
@@ -23,6 +22,7 @@
         <div class="bitte-halten-sie-ihren-nfc-tag-an-den-scanner-4Hq">Bitte halten Sie Ihren NFC-Tag an den Scanner.
         </div>
       </div>
+      <div id="nfc-status" class="nfc-status"></div>
       <script>
         function updateCurrentTime() {
           var currentTimeElement = document.getElementById('current-time');
@@ -49,7 +49,27 @@
         }
         setInterval(updateCurrentDate, 1000);
         updateCurrentDate();
+        function checkNFCTag() {
+          var xhr = new XMLHttpRequest();
+          xhr.open('GET', 'check_nfc.php', true);
+          xhr.onreadystatechange = function () {
+            if (xhr.readyState == 4 && xhr.status == 200) {
+              document.getElementById('nfc-status').innerHTML = xhr.responseText;
+              if (xhr.responseText.includes('frame-04')) {
+                window.location.href = 'frame-04.php';
+              } else if (xhr.responseText.includes('frame-02')) {
+                window.location.href = 'frame-02.html';
+              }
+            }
+          };
+          xhr.send();
+        }
+        checkNFCTag();
       </script>
     </div>
   </div>
 </body>
+
+
+
+

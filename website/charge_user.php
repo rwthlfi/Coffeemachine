@@ -16,7 +16,7 @@ echo "The current balance of " . $name . " is " . number_format($currentBalance,
 ?>
 <br><br>
 <form name="form" action="charge_user_process.php?name=<?php echo $name ?>" method="POST">
-    <input type="number" step="any" name="money_plus" id="money_plus">
+    <input type="number" step="0.01" name="money_plus" id="money_plus">
     <input type="submit" name="btn" value="finish">
 </form>
 

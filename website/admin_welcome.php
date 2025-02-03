@@ -1,4 +1,10 @@
 <?php
+
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
+
 session_start();
 include("connection.php");
 $user = $_SESSION['user'];
@@ -25,9 +31,10 @@ $userList = '';
 while ($row = mysqli_fetch_assoc($resultFetchUsers)) {
     $currentUserName = $row['Name'];
     $currentUserID = $row['ID'];
+    $currentUserBalance = $row['Balance'];
     $userList .= '<li>' . $currentUserName . ' ----- Balance: ' . number_format($row['Balance'], 2) . '€';
     $userList .= '<button onclick="window.location.href = \'edit_user.php?name=' . $currentUserName . '\'">Edit</button>';
-    $userList .= '<button onclick="deleteUser(\'' . $currentUserName . '\')">Delete</button>';
+    $userList .= '<button onclick="deleteUser(\'' . $currentUserName . '\', \'' . number_format($currentUserBalance, 2) . '\')">Delete</button>';
     $userList .= '<button onclick="window.location.href = \'charge_user.php?name=' . $currentUserName . '\'">Charge</button>';
     $userList .= '<button onclick="window.location.href = \'reset_password.php?name=' . $currentUserName . '&id=' . $currentUserID . '\'">Reset Password</button>';
     $userList .= '</li>';
@@ -51,25 +58,25 @@ while ($row = mysqli_fetch_assoc($resultFetchProducts)) {
 </head>
 
 <p></p>
-<button onclick="navigateTo('admin_welcome.php')">home</button>
+<!--<button onclick="navigateTo('admin_welcome.php')">home</button>-->
 <button onclick="navigateTo('add_user.php')">add user</button>
 <button onclick="navigateTo('add_product.php')">add product</button>
-<button onclick="navigateTo('index.php')"> log out</button>
 <button onclick="navigateTo('change_password.php')"> change password</button>
-<br>
-<button onclick="pay('Coffee')">Coffee</button>
-<button onclick="pay('Double Coffee')"> Double Coffee</button>
-<button onclick="pay('Espresso')">Espresso</button>
-<button onclick="pay('Double Espresso')">Double Espresso</button>
-<br>
 <button onclick="navigateTo('log.php')">LOG</button>
+<button onclick="navigateTo('index.php')"> log out</button>
+<br>
+<!--<button onclick="pay('Coffee')">Coffee</button>                     -->
+<!--<button onclick="pay('Double Coffee')"> Double Coffee</button>      -->
+<!--<button onclick="pay('Espresso')">Espresso</button>                 -->
+<!--<button onclick="pay('Double Espresso')">Double Espresso</button>   -->
+<br>
 
 
 <br><br>
 
 <script>
-    function deleteUser($userName) {
-        if (confirm("Are you sure you want to delete " + $userName + " ?")) {
+    function deleteUser($userName, $userBalance) {
+        if (confirm($userName + " has "+ $userBalance + "€. Are you sure you want to delete " + $userName + " ?")) {
             navigateTo("delete_user_process.php?name="+$userName);
         } else {
             alert("deleting process failed !");
