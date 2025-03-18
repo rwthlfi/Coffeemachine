@@ -44,7 +44,7 @@ if ($result->num_rows==1){
 </form>
 <script>
     function scanNFC() {
-        fetch('http://134.130.88.151/website/scan_nfc.php')
+        fetch('http://134.130.88.15/website/scan_nfc.php')
             .then(response => response.text())
             .then(data => {
                 if (data) {

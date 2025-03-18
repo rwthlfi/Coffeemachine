@@ -5,13 +5,9 @@ include("connection.php");
 function getNFCTagId() {
   $output = [];
   $returnValue = null;
-  exec("sudo python3 /usr/local/bin/coffeemachine/Kaffemaschine/rfid/read.py 2>&1", $output, $returnValue);
-  foreach($output as $line) {
-    //for debugging:
-    //echo "$line:\n";
-  }
+  exec("sudo python3 /home/it/Coffeemachine/rfid/read.py 2>&1", $output, $returnValue);
   //for debugging
-  //echo "Return value: $returnValue\n";
+  echo "Return value: '$returnValue'\n";
   if ($returnValue == 0 && !empty($output)){
     return trim($output[0]);
   }
@@ -19,6 +15,11 @@ function getNFCTagId() {
 }
 
 $nfcTagId = getNFCTagId();
+
+if ($nfcTagId === null) {
+  echo "no_nfc_detected";  // Tell JavaScript to keep waiting
+  exit;
+}
 
 $sql = "SELECT Name, Balance, ID FROM user WHERE NFCTag = ?";
 $stmt = $conn->prepare($sql);

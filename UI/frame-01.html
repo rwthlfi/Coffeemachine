@@ -1,5 +1,3 @@
-
-
 <head>
   <meta charset="utf-8" />
   <link rel="icon" href="/favicon.ico" />
@@ -18,7 +16,7 @@
       <div class="lock-XFy">
         <div id="current-time" class="item-07-00-qGf"></div>
         <div id="current-date" class="item-01012024-7EB"></div>
-        <div class="hallo-QDH">Hallo!</div>
+        <div class="hallo-QDH">Hallo !</div>
         <div class="bitte-halten-sie-ihren-nfc-tag-an-den-scanner-4Hq">Bitte halten Sie Ihren NFC-Tag an den Scanner.
         </div>
       </div>
@@ -49,7 +47,8 @@
         }
         setInterval(updateCurrentDate, 1000);
         updateCurrentDate();
-        function checkNFCTag() {
+        
+        function checkNFCTag() { 
           var xhr = new XMLHttpRequest();
           xhr.open('GET', 'check_nfc.php', true);
           xhr.onreadystatechange = function () {
@@ -64,12 +63,8 @@
           };
           xhr.send();
         }
-        checkNFCTag();
+        setTimeout(checkNFCTag, 1000);
       </script>
     </div>
   </div>
 </body>
-
-
-
-

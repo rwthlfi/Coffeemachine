@@ -5,7 +5,7 @@ include("connection.php");
 function getNFCTagId() {
   $output = [];
   $returnValue = null;
-  exec("sudo python3 /usr/local/bin/coffeemachine/Kaffemaschine/rfid/read.py 2>&1", $output, $returnValue);
+  exec("sudo python3 Coffeemachine/rfid/read.py 2>&1", $output, $returnValue);
   foreach($output as $line) {
     //for debugging:
     //echo "$line:\n";
