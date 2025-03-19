@@ -47,23 +47,30 @@
         }
         setInterval(updateCurrentDate, 1000);
         updateCurrentDate();
-        
-        function checkNFCTag() { 
+
+        function checkNFCTag() {
           var xhr = new XMLHttpRequest();
-          xhr.open('GET', 'check_nfc.php', true);
+          xhr.open("GET", "check_nfc.php", true);
+
           xhr.onreadystatechange = function () {
             if (xhr.readyState == 4 && xhr.status == 200) {
-              document.getElementById('nfc-status').innerHTML = xhr.responseText;
-              if (xhr.responseText.includes('frame-04')) {
-                window.location.href = 'frame-04.php';
-              } else if (xhr.responseText.includes('frame-02')) {
-                window.location.href = 'frame-02.html';
+              var response = xhr.responseText.trim();
+
+              if (response === "frame-04") {
+                window.location.href = "frame-04.php"; // Valid NFC, proceed
+              } else if (response === "frame-02") {
+                window.location.href = "frame-02.html"; // NFC not recognized
+              } else {
+                // Keep polling for NFC if no tag detected
+                setTimeout(checkNFCTag, 500);
               }
             }
           };
           xhr.send();
         }
-        setTimeout(checkNFCTag, 1000);
+
+        // Start polling every second
+        checkNFCTag();
       </script>
     </div>
   </div>
