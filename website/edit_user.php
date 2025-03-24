@@ -43,23 +43,36 @@ if ($result->num_rows==1){
     <input type="submit" id="btn" value="finish" />
 </form>
 <script>
-    function scanNFC() {
-        fetch('http://134.130.88.15/website/scan_nfc.php')
-            .then(response => response.text())
-            .then(data => {
-                if (data) {
-                    document.getElementById('nfc').value = data;
-                } else {
-                    alert('No NFC tag detected or error occurred.');
-                }
-            })
-            .catch(error => {
-                console.error('Error:', error);
-            });
+    let scanning = false; // Flag to prevent multiple loops
+
+function scanNFC() {
+    if (scanning) return; // Prevent multiple instances of the loop
+    scanning = true;
+    
+    let nfcInput = document.getElementById('nfc');
+    nfcInput.value = ''; 
+    nfcInput.placeholder = 'Scanning...';
+    
+    async function fetchNFC() {
+        try {
+            const response = await fetch('http://134.130.88.15:8081/scan_nfc.php');
+            const data = await response.text();
+            
+            if (!data.includes("No NFC Detected") && !data.startsWith("<!DOCTYPE")) { // Check if NFC tag is detected
+                nfcInput.value = data; // Show scanned NFC tag
+                nfcInput.placeholder = ""; // Clear placeholder
+                scanning = false; // Stop scanning
+            } else {
+                setTimeout(fetchNFC, 1000); // Retry in 1 seconds
+            }
+        } catch (error) {
+            scanning = false;
+        }
     }
-    function navigateTo(url) {
-        window.location.href = url;
-    }
+    
+    fetchNFC(); // Start scanning
+}
+
 </script>
 </body>
 </html>
