@@ -45,33 +45,33 @@ if ($result->num_rows==1){
 <script>
     let scanning = false; // Flag to prevent multiple loops
 
-function scanNFC() {
-    if (scanning) return; // Prevent multiple instances of the loop
-    scanning = true;
+    function scanNFC() {
+        if (scanning) return; // Prevent multiple instances of the loop
+        scanning = true;
     
-    let nfcInput = document.getElementById('nfc');
-    nfcInput.value = ''; 
-    nfcInput.placeholder = 'Scanning...';
+        let nfcInput = document.getElementById('nfc');
+        nfcInput.value = ''; 
+        nfcInput.placeholder = 'Scanning...';
     
-    async function fetchNFC() {
-        try {
-            const response = await fetch('http://134.130.88.15:8081/scan_nfc.php');
-            const data = await response.text();
+        async function fetchNFC() {
+            try {
+                const response = await fetch('http://134.130.88.15:8081/scan_nfc.php');
+                const data = await response.text();
             
-            if (!data.includes("No NFC Detected") && !data.startsWith("<!DOCTYPE")) { // Check if NFC tag is detected
-                nfcInput.value = data; // Show scanned NFC tag
-                nfcInput.placeholder = ""; // Clear placeholder
-                scanning = false; // Stop scanning
-            } else {
+                if (!data.includes("No NFC Detected") && !data.startsWith("<!DOCTYPE")) { // Check if NFC tag is detected
+                    nfcInput.value = data; // Show scanned NFC tag
+                    nfcInput.placeholder = ""; // Clear placeholder
+                    scanning = false; // Stop scanning
+                } else {
                 setTimeout(fetchNFC, 1000); // Retry in 1 seconds
+                }
+            } catch (error) {
+                scanning = false;
             }
-        } catch (error) {
-            scanning = false;
         }
-    }
     
-    fetchNFC(); // Start scanning
-}
+        fetchNFC(); // Start scanning
+    }
 
 </script>
 </body>
